@@ -1,0 +1,44 @@
+body{
+    display: flex;
+    margin: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 1px;
+    width: 600px;
+    height: 600px;
+
+}
+.row{
+
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    align-items: stretch;
+    justify-content: stretch;
+    flex: 1 1 auto;
+}
+.cell{
+    background-color: rgb(204, 204, 204);
+    min-height: 5px;
+    min-width: 5px;
+    flex: 1 1 auto;
+}
+#color-picker{
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin-left: 200px;
+}
+#color-swatch{
+    height: 40px;
+    width: 40px;
+    background-color: darkblue;
+    margin: 8px;
+}
