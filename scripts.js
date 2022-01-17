@@ -1,16 +1,28 @@
 const DEFAULT_SIZE = 16;
-const FILL_COLOR = 'darkblue';
+const FILL_COLOR = 'black';
 const container = document.createElement('div');
 container.classList.add('container');
 let fillColor = FILL_COLOR;
+let useRainbowColor = false;
+let rainbowHue = 0;
+let saturation = 100;
+let luminance = 50;
 
 
 
-    const colorSwatch = document.querySelector('#color-swatch');
-    colorSwatch.addEventListener("click", function(e){
-        fillColor = "rgb("+ Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")";
-        e.target.style.backgroundColor = fillColor;
-    });
+const colorSelector = document.querySelector('#color-selector');
+colorSelector.addEventListener("click", function(e){
+    useRainbowColor = false;
+    fillColor = "rgb("+ Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")";
+    e.target.style.backgroundColor = fillColor;
+});
+const rainbowButton = document.querySelector("#rainbow-color");
+rainbowButton.addEventListener("click", function(e){
+    useRainbowColor = true;
+    console.log('rainbows')
+});
+
+
 // make a div
 function createDiv(classValue){
     let cellDiv = document.createElement('div');
@@ -21,10 +33,20 @@ function createDiv(classValue){
 
 // add colour to div
 function fillIn(e){
-    e.target.style.background = fillColor;
+    if(useRainbowColor == false){
+        e.target.style.backgroundColor = fillColor;
+    } else {
+        e.target.style.backgroundColor = `hsl(${rainbowHue}, ${saturation}%, ${luminance}%)`;
+        console.log(`hsl(${rainbowHue}, ${saturation}%, ${luminance}%)`);
+        if (rainbowHue < 360){
+            rainbowHue += 5;
+        } else {
+            rainbowHue = 0;
+        }
+    }
 }
 
-// start new image
+// create new grid
 function buildGrid(gridSize){ 
 
     // make grid of divs
@@ -39,21 +61,27 @@ function buildGrid(gridSize){
     }
 }
 function startNew(){
+console.log();
     while(container.firstElementChild){
         container.firstElementChild.remove();
     }
-
     let gridSize = DEFAULT_SIZE;
-    gridSize = prompt("Enter size of grid (between 1-100)", gridSize);
+    
+    // if no size is specified prompt the user.
+    if(typeof arguments[0] == "object"){
+        gridSize = prompt("Enter size of grid (between 1-100)", gridSize);
+    } else {
+        gridSize = arguments[0];
+    }
     if (Number(gridSize) == undefined ||Number(gridSize) == NaN || Number(gridSize) < 1 || Number(gridSize) > 100){
         console.log('Error');
         startNew();
     } else{
         buildGrid(gridSize);
         document.body.appendChild(container);
-    }
+    } 
 }
 
-startNew();
+startNew(DEFAULT_SIZE);
 const resetButton = document.querySelector('#reset');
  resetButton.addEventListener('click', startNew);

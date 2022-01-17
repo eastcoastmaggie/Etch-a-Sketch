@@ -1,26 +1,44 @@
 body{
     display: flex;
-    margin: 30px;
-    flex-direction: column;
+    margin: 8px;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 2px;
+    justify-content: space-evenly;
+    background-color: rgb(192, 192, 192);
+}
+h1{
+    color: rgb(16, 90, 90);
+    font-family:cursive;
+}
+button{
+    color: rgb(105, 173, 173);
+    box-shadow: none;
+    border: solid rgb(105, 173, 173);
+    background-color: rgb(70, 75, 75);
+    margin: 10px;
+    width: 128px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: bold;
 }
 .container{
+    background-color: rgb(16, 90, 90);
+    border-radius: 3%;
+    padding: 8px;
+    border: rgb(19, 77, 77) 7px solid;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    gap: 1px;
-    width: 600px;
-    height: 600px;
+    width: 80vh;
+    height: 80vh;
+    margin: 0px;
 
 }
 .row{
 
     display: flex;
     flex-direction: row;
-    gap: 1px;
     align-items: stretch;
     justify-content: stretch;
     flex: 1 1 auto;
@@ -31,14 +49,15 @@ body{
     min-width: 5px;
     flex: 1 1 auto;
 }
-#color-picker{
-    justify-self: flex-start;
-    align-self: flex-start;
-    margin-left: 200px;
+.controls{
+
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
 }
 #color-swatch{
-    height: 40px;
-    width: 40px;
-    background-color: darkblue;
+    height: 10px;
+    width: 10px;
+    background-color:hsl(0, 100, 50);
     margin: 8px;
 }
