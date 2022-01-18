@@ -12,9 +12,10 @@ let luminance = 50;
 
 const colorSelector = document.querySelector('#color-selector');
 colorSelector.addEventListener("click", function(e){
+    const colorSwatch = document.querySelector('#color-swatch');
     useRainbowColor = false;
     fillColor = "rgb("+ Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")";
-    e.target.style.backgroundColor = fillColor;
+    colorSwatch.style.backgroundColor = fillColor;
 });
 const rainbowButton = document.querySelector("#rainbow-color");
 rainbowButton.addEventListener("click", function(e){
@@ -61,15 +62,18 @@ function buildGrid(gridSize){
     }
 }
 function startNew(){
-console.log();
-    while(container.firstElementChild){
-        container.firstElementChild.remove();
-    }
+
+   
     let gridSize = DEFAULT_SIZE;
     
     // if no size is specified prompt the user.
     if(typeof arguments[0] == "object"){
-        gridSize = prompt("Enter size of grid (between 1-100)", gridSize);
+        gridSize = prompt("Enter size of grid (between 1-100)", gridSize); 
+        if (gridSize != null){
+            while(container.firstElementChild){
+                container.firstElementChild.remove();
+            }
+        }
     } else {
         gridSize = arguments[0];
     }
@@ -85,3 +89,4 @@ console.log();
 startNew(DEFAULT_SIZE);
 const resetButton = document.querySelector('#reset');
  resetButton.addEventListener('click', startNew);
+
